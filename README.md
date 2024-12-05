@@ -32,20 +32,49 @@ Instructions to run the nanoAOD postprocessor can be found at [nanoAOD-tools](ht
 cd PhysicsTools/NanoHRTTools/run
 ```
 
+# Do not forget to run voms-proxy-init --voms cms --out $X509_USER_PROXY
+```bash
+export X509_USER_PROXY=~/.globus/x509up
+```
+
 ##### Make trees to produce ntuples for heavy flavour tagging (bb/cc) measurement
 
 ```bash
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2018 --sfbdt 0 -n 1
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2018 --run-data --sfbdt 0 -n 1
+#################
+### RUN 3 #######
+#################
 
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2017 --sfbdt 0 -n 1
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2017 --run-data --sfbdt 0 -n 1
+#2024 means 2023postBPix
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2024 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"'
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2024 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"'
 
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2016 --sfbdt 0 -n 1
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2016 --run-data --sfbdt 0 -n 1
+#2023 means 2023preBPix
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2023 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2023 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
 
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2015 --sfbdt 0 -n 1
-python runHeavyFlavTrees.py -o /eos/<some-eos-path-on-lxplus>/20230926_ULNanoV9 --jet-type ak8 --channel qcd --year 2015 --run-data --sfbdt 0 -n 1
+#2022 means 2022postEE
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2022 --sfbdt 0 -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2022 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
+
+#2021 means 2022preEE
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2021 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2021 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"'
+
+#################
+### RUN 2 #######
+#################
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2018 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2018 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2017 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all"'
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2017 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2016 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2016 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+
+#2015 means 2016APV!!!!!
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2015 --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20241023_ULNanoV9 --jet-type ak15 --channel qcd --year 2015 --run-data --sfbdt 0 -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '
 ```
 
 where, `/eos/<some-eos-path-on-lxplus>/` is some path on EOS you have write access to.

@@ -41,6 +41,9 @@ class JetCorrector(object):
             self.jecLevels += ['L2L3Residual']
         self.vPar = ROOT.vector(ROOT.JetCorrectorParameters)()
         logger.info('Init JetCorrector: %s, %s, %s', globalTag, jetType, str(self.jecLevels))
+        logger.info('Init JetCorrector: %s/%s_x_%s.txt',
+                jecPath, globalTag, jetType)
+        logger.info('Init JetCorrector:%s', self.jecLevels)        
         for level in self.jecLevels:
             self.vPar.push_back(ROOT.JetCorrectorParameters(os.path.join(
                 jecPath, "%s_%s_%s.txt" % (globalTag, level, jetType)), ""))
@@ -131,17 +134,17 @@ class JetMETCorrector(object):
                 (277772, 'Summer19UL16_RunFGH_V7_DATA'),
             )
         elif self.year == 2017:
-            self.globalTag = 'Summer19UL17_V6_MC'
+            self.globalTag = 'Summer19UL17_V5_MC'
             self.jerTag = 'Summer19UL17_JRV2_MC'
             self.dataTags = (
                 # set the name of the tarball with a dummy run number
-                (0, 'Summer19UL17_V6_DATA'),
+                (0, 'Summer19UL17_V5_DATA'),
                 # (start run number (inclusive), 'tag name')
-                (297020, 'Summer19UL17_RunB_V6_DATA'),
-                (299337, 'Summer19UL17_RunC_V6_DATA'),
-                (302030, 'Summer19UL17_RunD_V6_DATA'),
-                (303435, 'Summer19UL17_RunE_V6_DATA'),
-                (304911, 'Summer19UL17_RunF_V6_DATA'),
+                (297020, 'Summer19UL17_RunB_V5_DATA'),
+                (299337, 'Summer19UL17_RunC_V5_DATA'),
+                (302030, 'Summer19UL17_RunD_V5_DATA'),
+                (303435, 'Summer19UL17_RunE_V5_DATA'),
+                (304911, 'Summer19UL17_RunF_V5_DATA'),
             )
         elif self.year == 2018:
             self.globalTag = 'Summer19UL18_V5_MC'
@@ -155,6 +158,46 @@ class JetMETCorrector(object):
                 (319313, 'Summer19UL18_RunC_V5_DATA'),
                 (320394, 'Summer19UL18_RunD_V5_DATA'),
             )
+        elif self.year == 2021:
+            self.globalTag = 'Summer22_22Sep2023_V2_MC'
+            self.jerTag = 'Summer22_22Sep2023_JRV1_MC'
+            self.dataTags = (
+                # set the name of the tarball with a dummy run number
+                (0, 'Summer22_22Sep2023_RunCD_V2_DATA'),
+                # (start run number (inclusive), 'tag name')
+                (355794, 'Summer22_22Sep2023_RunCD_V2_DATA'),
+            )
+        elif self.year == 2022:
+            self.globalTag = 'Summer22EE_22Sep2023_V2_MC'
+            self.jerTag = 'Summer22EE_22Sep2023_JRV1_MC'
+            self.dataTags = (
+                # set the name of the tarball with a dummy run number
+                (0, 'Summer22EE_22Sep2023_V2_DATA'),
+                # (start run number (inclusive), 'tag name')
+                (359022, 'Summer22EE_22Sep2023_RunE_V2_DATA'),
+                (360332, 'Summer22EE_22Sep2023_RunF_V2_DATA'),
+                (362350, 'Summer22EE_22Sep2023_RunG_V2_DATA'),
+            )
+        elif self.year == 2023:
+            self.globalTag = 'Summer23Prompt23_V1_MC'
+            self.jerTag = 'Summer23Prompt23_RunCv1234_JRV1_MC'
+            self.dataTags = (
+                # set the name of the tarball with a dummy run number
+                (0, 'Summer23Prompt23_RunC_V1_DATA'),
+                # (start run number (inclusive), 'tag name')
+                (367080, 'Summer23Prompt23_RunCv123_V1_DATA'),
+                (367765, 'Summer23Prompt23_RunCv4_V1_DATA'),
+            )
+        elif self.year == 2024:
+            self.globalTag = 'Summer23BPixPrompt23_V1_MC'
+            self.jerTag = 'Summer23BPixPrompt23_RunD_JRV1_MC'
+            self.dataTags = (
+                # set the name of the tarball with a dummy run number
+                (0, 'Summer23BPixPrompt23_RunD_V1_DATA'),
+                # (start run number (inclusive), 'tag name')
+                (369803, 'Summer23BPixPrompt23_RunD_V1_DATA'),
+            )
+
         else:
             raise RuntimeError('Invalid year: %s' % (str(self.year)))
 
@@ -248,7 +291,11 @@ class JetMETCorrector(object):
 
     def correctJetAndMET(self, jets, lowPtJets=None, met=None, rawMET=None, defaultMET=None,
                          rho=None, genjets=[], isMC=True, runNumber=None):
-        assert (not isMC) or (self.jesr_extra_br and (self.jer == 'nominal' and self.jes == None)), "Must run jesr_extra_br=True in nominal."
+        #print(isMC)
+        #print(self.jesr_extra_br)
+        #print(self.jer)
+        #print(self.jes)
+        assert (not isMC) or (self.jesr_extra_br and (self.jer == 'nominal')), "Must run jesr_extra_br=True in nominal." #and self.jes == None))
 
         # for MET correction, use 'Jet' (corr_pt>15) and 'CorrT1METJet' (corr_pt<15) collections
         # Type-1 MET correction: https://github.com/cms-sw/cmssw/blob/master/JetMETCorrections/Type1MET/interface/PFJetMETcorrInputProducerT.h

@@ -3,6 +3,7 @@ from __future__ import print_function
 
 import os
 import copy
+import ast
 
 from runPostProcessing import get_arg_parser, run, tar_cmssw
 import logging
@@ -40,6 +41,10 @@ golden_json = {
     2016: 'Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt',
     2017: 'Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt',
     2018: 'Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt',
+    2021: 'Cert_Collisions2022_355100_362760_Golden.json',
+    2022: 'Cert_Collisions2022_355100_362760_Golden.json',
+    2023: 'Cert_Collisions2023_366442_370790_Golden.json',
+    2024: 'Cert_Collisions2023_366442_370790_Golden.json',
 }
 
 
@@ -63,8 +68,10 @@ def _process(args):
     if channel in ('qcd', 'photon', 'higgs'):
         default_config['sfbdt_threshold'] = args.sfbdt
 
-    if year in (2017, 2018):
-        args.weight_file = 'samples/xsec_2017.conf'
+    if (year < 2019):
+        args.weight_file = 'samples/xsec_Run2.conf'
+    else:
+        args.weight_file = 'samples/xsec_Run3.conf'
 
     basename = os.path.basename(args.outputdir) + '_' + args.jet_type + '_' + channel + '_' + str(year)
     args.outputdir = os.path.join(os.path.dirname(args.outputdir), basename, 'data' if args.run_data else 'mc')
@@ -84,9 +91,19 @@ def _process(args):
         args.cut = cut_dict_ak8[channel]
 
     args.imports = [('PhysicsTools.NanoHRTTools.producers.HeavyFlavSFTreeProducer', 'heavyFlavSFTreeFromConfig')]
+    
+    if year == 2015:
+        PUyear = 2016
+    elif year == 2021:
+        PUyear = 2022
+    elif year == 2024:
+        PUyear = 2023
+    else:
+        PUyear = year
+
     if not args.run_data:
         args.imports.extend([('PhysicsTools.NanoAODTools.postprocessing.modules.common.puWeightProducer',
-                              'puWeight_UL2016' if year == 2015 else 'puWeight_UL%d' % year),
+                              'puWeight_UL%d' % PUyear),
                              ('PhysicsTools.NanoHRTTools.producers.topPtWeightProducer', 'topPtWeight')])
 
     # data, or just nominal MC
@@ -200,6 +217,10 @@ def main():
                         help='Run mass regression. Default: %(default)s'
                         )
 
+    parser.add_argument('--po', '--producer-option', dest='producer_option',
+                        nargs=2, action='append', default=[],
+                        help='options to pass to the producer, e.g., `--po apply_tight_selection False`')
+
     args = parser.parse_args()
 
     if not (args.post or args.add_weight or args.merge):
@@ -208,6 +229,11 @@ def main():
     years = args.year.split(',')
     channels = args.channel.split(',')
     categories = ['data' if args.run_data else 'mc']
+
+    producer_options = {k: ast.literal_eval(v) for k, v in args.producer_option}
+    if len(producer_options):
+        logging.info(f'Updating default_config with options: {producer_options}')
+        default_config.update(producer_options)
 
     for year in years:
         for chn in channels:
@@ -218,13 +244,17 @@ def main():
                     opts.nfiles_per_job *= 2
                 if opts.inputdir:
                     opts.inputdir = opts.inputdir.rstrip('/').replace('_YEAR_', year)
-                    assert(year in opts.inputdir)
+                    #It's a mess with the Run 3 parts, let's just assume it's okay
+                    #logging.debug(year)
+                    #logging.debug(opts.inputdir)
+                    #if not (( int(year) == 2015) and ('2016APV' in opts.inputdir)):
+                    #    assert(year in opts.inputdir)
                     if opts.inputdir.rsplit('/', 1)[1] not in ['data', 'mc']:
                         opts.inputdir = os.path.join(opts.inputdir, cat)
                     assert(opts.inputdir.endswith(cat))
-                opts.year = year
+                opts.year = int(year)
                 opts.channel = chn
-                logging.info('inputdir=%s, year=%s, channel=%s, cat=%s, syst=%s', opts.inputdir, opts.year,
+                logging.info('inputdir=%s, year=%d, channel=%s, cat=%s, syst=%s', opts.inputdir, opts.year,
                              opts.channel, 'data' if opts.run_data else 'mc', 'syst' if opts.run_syst else 'none')
                 _process(opts)
 

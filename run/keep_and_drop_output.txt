@@ -22,3 +22,4 @@ keepmatch HLT_PFHT[0-9]+
 keep genWeight
 keep LHE_Vpt
 keep PSWeight
+keep jetVetoMapEventVeto

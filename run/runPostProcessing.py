@@ -181,8 +181,8 @@ def parse_sample_xsec(cfgfile):
                 if samp in xsec_dict and xsec_dict[samp] != xsec:
                     raise RuntimeError('Inconsistent entries for sample %s' % samp)
                 xsec_dict[samp] = xsec
-                if 'PSweights_' in samp:
-                    xsec_dict[samp.replace('PSweights_', '')] = xsec
+                if 'PSWeights_' in samp:
+                    xsec_dict[samp.replace('PSWeights_', '')] = xsec
     return xsec_dict
 
 
@@ -276,18 +276,20 @@ def create_metadata(args):
                 if not select_sample(dataset):
                     continue
                 sampdir = os.path.join(args.inputdir, sname(dataset))
-                for dp, dn, filenames in os.walk(sampdir):
+                for dp, dn, filenames in os.walk(sampdir, followlinks=True):
+                    #This is super weird but if I remove the loop below it sometimes doesn't work
+                    for dir in dn:
+                        subdir = os.path.join(dp, dir)
+                        #logging.debug(f"Contents of {dir}: {os.listdir(subdir)}")
                     if 'failed' in dp:
                         continue
                     for f in filenames:
                         if not f.endswith('.root'):
                             continue
                         if os.path.getsize(os.path.join(dp, f)) < 1000:
-                            if '-' not in samp and '_' not in samp:
-                                raise RuntimeError('Empty data file %s' % os.path.join(dp, f))
-                            else:
-                                logging.warning('Ignoring empty MC file %s' % os.path.join(dp, f))
-                                continue
+                            #Skipping empty files, whether it's data or MC
+                            logging.warning('Ignoring empty file %s!!! MAKE SURE THIS IS OKAY.' % os.path.join(dp, f))
+                            continue
                         filelist.append(os.path.join(dp, f))
             if len(filelist):
                 filelist = sorted(filelist)
@@ -460,6 +462,7 @@ def submit(args, configs):
     condordesc = '''\
 universe              = vanilla
 requirements          = (Arch == "X86_64") && (OpSys == "LINUX")
+MY.WantOS = "el7"
 request_memory        = {request_memory}
 request_disk          = 10000000
 executable            = {scriptfile}
@@ -532,8 +535,10 @@ def run_add_weight(args):
 
         # add weight
         if args.weight_file:
-            try:
-                xsec = xsec_dict[samp]
+            try:   
+                #logging.debug(xsec_dict)
+                #logging.debug(samp)
+                xsec = xsec_dict[samp.replace('PSWeights_', '')]
                 if xsec is not None:
                     logging.info('Adding xsec weight to file %s, xsec=%f' % (outfile, xsec))
                     add_weight_branch(outfile, xsec)
@@ -685,7 +690,7 @@ def get_arg_parser():
         help='Merge output files of the same dataset and add cross section weight using the file specified in --weight-file. Default: %(default)s'
     )
     parser.add_argument('-w', '--weight-file',
-        default='samples/xsec_2017.conf',
+        default='samples/xsec_Run2.conf',
         help='File with xsec of each sample. If empty, xsec wgt will not be added. Default: %(default)s'
     )
     parser.add_argument('--merge',
