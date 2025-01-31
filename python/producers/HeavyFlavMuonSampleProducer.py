@@ -29,6 +29,9 @@ class MuonSampleProducer(HeavyFlavBaseProducer):
         event._allMuons = Collection(event, "Muon")
         event.muons = [mu for mu in event._allMuons if mu.pt > 55 and abs(mu.eta) < 2.4 and abs(
             mu.dxy) < 0.2 and abs(mu.dz) < 0.5 and mu.tightId and mu.miniPFRelIso_all < 0.10]
+
+        print("nmuons")
+        print(len(event.muons))
         if len(event.muons) != 1:
             return False
 
@@ -36,23 +39,34 @@ class MuonSampleProducer(HeavyFlavBaseProducer):
         self.correctJetsAndMET(event)
 
         # met selection
+        print("met:")
+        print(event.met.pt)
         if event.met.pt < 50.0:
             return False
 
         # leptonic W pt cut
         event.mu = event.muons[0]
         event.leptonicW = polarP4(event.mu) + event.met.p4()
+        print("pt of leptonic w:")
+        print(event.leptonicW.Pt())
         if event.leptonicW.Pt() < 100.0:
             return False
 
         # at least one b-jet, in the same hemisphere of the muon
+        print("njets:",len(event.ak4jets))
+        for j in event.ak4jets:
+            print(j.btagDeepFlavB)
         event.bjets = [j for j in event.ak4jets if j.btagDeepFlavB > self.DeepJet_WP_M and
                        abs(deltaPhi(j, event.mu)) < 2]
+        print("nbjets:")
+        print(len(event.bjets))
         if len(event.bjets) == 0:
             return False
 
         # require fatjet away from the muon
         probe_jets = [fj for fj in event.fatjets if abs(deltaPhi(fj, event.mu)) > 2]
+        print("n fatjets away from muon:")
+        print(len(probe_jets))
         if len(probe_jets) == 0:
             return False
 
@@ -79,3 +93,7 @@ class MuonSampleProducer(HeavyFlavBaseProducer):
 def MuonTree_2016(): return MuonSampleProducer(year=2016)
 def MuonTree_2017(): return MuonSampleProducer(year=2017)
 def MuonTree_2018(): return MuonSampleProducer(year=2018)
+def MuonTree_2021(): return MuonSampleProducer(year=2021)
+def MuonTree_2022(): return MuonSampleProducer(year=2022)
+def MuonTree_2023(): return MuonSampleProducer(year=2023)
+def MuonTree_2024(): return MuonSampleProducer(year=2024)

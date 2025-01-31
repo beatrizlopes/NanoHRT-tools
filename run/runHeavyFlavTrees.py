@@ -244,9 +244,7 @@ def main():
                     opts.nfiles_per_job *= 2
                 if opts.inputdir:
                     opts.inputdir = opts.inputdir.rstrip('/').replace('_YEAR_', year)
-                    #It's a mess with the Run 3 parts, let's just assume it's okay
-                    #logging.debug(year)
-                    #logging.debug(opts.inputdir)
+                    #It's a mess with the Run 3 parts, let's just assume it's okay for now
                     #if not (( int(year) == 2015) and ('2016APV' in opts.inputdir)):
                     #    assert(year in opts.inputdir)
                     if opts.inputdir.rsplit('/', 1)[1] not in ['data', 'mc']:

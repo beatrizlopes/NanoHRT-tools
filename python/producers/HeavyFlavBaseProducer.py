@@ -11,7 +11,7 @@ from ..helpers.utils import deltaR, closest, polarP4, sumP4, get_subjets, correc
 from ..helpers.xgbHelper import XGBEnsemble
 from ..helpers.nnHelper import convert_prob, ensemble
 from ..helpers.jetmetCorrector import JetMETCorrector, rndSeed
-from .EventVetoMapProducer import EventVetoMapProducer
+#from .EventVetoMapProducer import EventVetoMapProducer
 
 import logging
 logger = logging.getLogger('nano')
@@ -123,32 +123,32 @@ class HeavyFlavBaseProducer(Module, object):
         self.DeepJet_WP_M = {2015: 0.2598, 2016: 0.2489, 2017: 0.3040, 2018: 0.2783, 2021:0.3086, 2022: 0.3196, 2023: 0.2431, 2024: 0.2435}[self.year]
         self.DeepJet_WP_T = {2015: 0.6502, 2016: 0.6377, 2017: 0.7476, 2018: 0.7100, 2021:0.7183, 2022: 0.7300, 2023: 0.6553, 2024: 0.6563}[self.year]
 
-        self._modules = {
+        #self._modules = {
             # 'flavTagSF': FlavTagSFProducer,
             # 'electronSF': ElectronSFProducer,
             # 'muonSF': MuonSFProducer,
             #'puWeight': PileupWeightProducer,
             #'nloWeight': NLOWeightProducer,
-            'eventJetVeto': EventVetoMapProducer,
+            #'eventJetVeto': EventVetoMapProducer,
             # 'topSystReweighter': TopSystReweightingProducer,
-        } #if self._opts['runModules'] else {'eventJetVeto': EventVetoMapProducer}
-        print("\n\n\n\n\n self._modules",self._modules)
-        for k, cls in self._modules.items():
-            self._modules[k] = cls(self.year)#, fillSystWeights=self._opts['fillSystWeights'])
+        #} #if self._opts['runModules'] else {'eventJetVeto': EventVetoMapProducer}
+        #print("\n\n\n\n\n self._modules",self._modules)
+        #for k, cls in self._modules.items():
+        #    self._modules[k] = cls(self.year)#, fillSystWeights=self._opts['fillSystWeights'])
 
     def beginJob(self):
         if self._needsJMECorr:
             self.jetmetCorr.beginJob()
             self.fatjetCorr.beginJob()
             self.subjetCorr.beginJob()
-        for mod in self._modules.values():
-            mod.beginJob()
+        #for mod in self._modules.values():
+        #    mod.beginJob()
         if self._opts['sfbdt_threshold'] > -99:
             self.xgb = XGBEnsemble(self._sfbdt_files, self._sfbdt_vars)
 
-    def endJob(self):
-        for mod in self._modules.values():
-            mod.endJob()
+    #def endJob(self):
+    #    for mod in self._modules.values():
+    #        mod.endJob()
 
     def beginFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         self.isMC = bool(inputTree.GetBranch('genWeight'))
@@ -262,7 +262,7 @@ class HeavyFlavBaseProducer(Module, object):
             # self.out.branch(prefix + "ParticleNet_HbbvsQCD", "F")
             # self.out.branch(prefix + "ParticleNet_HccvsQCD", "F")
             # self.out.branch(prefix + "ParticleNet_H4qvsQCD", "F")
-            # self.out.branch(prefix + "ParticleNet_mass", "F")
+            self.out.branch(prefix + "ParticleNet_mass", "F")
             self.out.branch(prefix + "btagDDBvLV2", "F")
             self.out.branch(prefix + "btagDDCvBV2", "F")
             self.out.branch(prefix + "btagDDCvLV2", "F")
@@ -380,14 +380,14 @@ class HeavyFlavBaseProducer(Module, object):
                         self.out.branch(prefix + "cpart{}_sumpt".format(ptsuf), "F")
                         self.out.branch(prefix + "gpart{}_sumpt".format(ptsuf), "F")
 
-        for mod in self._modules.values():
-            mod.beginFile(inputFile, outputFile, inputTree, wrappedOutputTree)
+        #for mod in self._modules.values():
+        #    mod.beginFile(inputFile, outputFile, inputTree, wrappedOutputTree)
  
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
         
-        for mod in self._modules.values():
-            mod.endFile(inputFile, outputFile, inputTree, wrappedOutputTree)
+        #for mod in self._modules.values():
+        #    mod.endFile(inputFile, outputFile, inputTree, wrappedOutputTree)
         
         if self._opts['run_tagger'] and self._opts['WRITE_CACHE_FILE']:
             for p in self.pnTaggers:
@@ -893,10 +893,10 @@ class HeavyFlavBaseProducer(Module, object):
             #     self.out.fillBranch(prefix + "ParticleNet_HbbvsQCD", -1)
             #     self.out.fillBranch(prefix + "ParticleNet_HccvsQCD", -1)
             #     self.out.fillBranch(prefix + "ParticleNet_H4qvsQCD", -1)
-            # try:
-            #     self.out.fillBranch(prefix + "ParticleNet_mass", fj.particleNet_mass)
-            # except RuntimeError:
-            #     self.out.fillBranch(prefix + "ParticleNet_mass", -1)
+            try:
+                self.out.fillBranch(prefix + "ParticleNet_mass", fj.particleNet_mass)
+            except RuntimeError:
+                self.out.fillBranch(prefix + "ParticleNet_mass", -1)
             try:
                 self.out.fillBranch(prefix + "btagDDBvLV2", fj.btagDDBvLV2)
                 self.out.fillBranch(prefix + "btagDDCvBV2", fj.btagDDCvBV2)
