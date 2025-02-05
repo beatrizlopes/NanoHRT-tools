@@ -123,6 +123,13 @@ class HeavyFlavBaseProducer(Module, object):
         self.DeepJet_WP_M = {2015: 0.2598, 2016: 0.2489, 2017: 0.3040, 2018: 0.2783, 2021:0.3086, 2022: 0.3196, 2023: 0.2431, 2024: 0.2435}[self.year]
         self.DeepJet_WP_T = {2015: 0.6502, 2016: 0.6377, 2017: 0.7476, 2018: 0.7100, 2021:0.7183, 2022: 0.7300, 2023: 0.6553, 2024: 0.6563}[self.year]
 
+        self.PNet_WP_M = {
+            2021: 0.245,
+            2022: 0.2605,
+            2023: 0.1917,
+            2024: 0.1919
+        }[self.year]
+
         #self._modules = {
             # 'flavTagSF': FlavTagSFProducer,
             # 'electronSF': ElectronSFProducer,
