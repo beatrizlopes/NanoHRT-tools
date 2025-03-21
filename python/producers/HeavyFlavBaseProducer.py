@@ -124,6 +124,10 @@ class HeavyFlavBaseProducer(Module, object):
         self.DeepJet_WP_T = {2015: 0.6502, 2016: 0.6377, 2017: 0.7476, 2018: 0.7100, 2021:0.7183, 2022: 0.7300, 2023: 0.6553, 2024: 0.6563}[self.year]
 
         self.PNet_WP_M = {
+            2015: 0,
+            2016: 0,
+            2017: 0,
+            2018: 0,
             2021: 0.245,
             2022: 0.2605,
             2023: 0.1917,
@@ -250,7 +254,7 @@ class HeavyFlavBaseProducer(Module, object):
             self.out.branch(prefix + "ParticleNetMD_Xbb", "F")
             self.out.branch(prefix + "ParticleNetMD_Xcc", "F")
             self.out.branch(prefix + "ParticleNetMD_Xqq", "F")
-            self.out.branch(prefix + "ParticleNetMD_QCD", "F")
+            #self.out.branch(prefix + "ParticleNetMD_QCD", "F")
             self.out.branch(prefix + "ParticleNetMD_XbbVsQCD", "F")
             self.out.branch(prefix + "ParticleNetMD_XccVsQCD", "F")
             self.out.branch(prefix + "ParticleNetMD_XccOrXqqVsQCD", "F")
@@ -705,7 +709,7 @@ class HeavyFlavBaseProducer(Module, object):
                 j.regressed_mass = ensemble(outputs, np.median)['mass']
             else:
                 try:
-                    j.regressed_mass = j.particleNetMD_mass
+                    j.regressed_mass = j.ParticleNetMD_mass
                 except RuntimeError:
                     j.regressed_mass = 0
 
