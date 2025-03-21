@@ -89,36 +89,36 @@ Follow the instruction on screen to submit condor jobs. After all condor jobs fi
 #################
 
 #2024 means 2023postBPix
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2024   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"' --sfbdt 0 --run-mass-regression --run-syst
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2024 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2024   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"' --sfbdt 0 --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023postBPix -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2024 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --po jec True --po jes '"nominal"' --sfbdt 0
 
 #2023 means 2023preBPix
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2023   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2023 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2023   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0 --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2023preBPix -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2023 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
 
 #2022 means 2022postEE
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2022   -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2022 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2022   -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0 --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022postEE -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2022 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
 
 #2021 means 2022preEE
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2021   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2021 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2021   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0 --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2022preEE -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2021 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" '  --po jec True --po jes '"nominal"' --sfbdt 0
 
 #################
 ### RUN 2 #######
 #################
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --run-syst
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst 
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
 
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all"' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all"' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
 
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
 
 #2015 means 2016APV!!!!!
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2015   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20250124_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2015 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2015   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/2016APV -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2015 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
 ```
 
 <!-- 

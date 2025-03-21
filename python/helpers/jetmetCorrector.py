@@ -295,7 +295,7 @@ class JetMETCorrector(object):
         #print(self.jesr_extra_br)
         #print(self.jer)
         #print(self.jes)
-        assert (not isMC) or (self.jesr_extra_br and (self.jer == 'nominal')), "Must run jesr_extra_br=True in nominal." #and self.jes == None))
+        assert (not isMC) or (self.jesr_extra_br and (self.jer == 'nominal' and self.jes == None)) or (not self.jesr_extra_br) #"Must run jesr_extra_br=True in nominal." #and self.jes == None))
 
         # for MET correction, use 'Jet' (corr_pt>15) and 'CorrT1METJet' (corr_pt<15) collections
         # Type-1 MET correction: https://github.com/cms-sw/cmssw/blob/master/JetMETCorrections/Type1MET/interface/PFJetMETcorrInputProducerT.h
@@ -343,6 +343,8 @@ class JetMETCorrector(object):
             # set JES uncertainty ( = varied-Pt / Pt)
             j._jesUncFactor = 1
             if isMC and (self.jes in ['up', 'down'] or self.jesr_extra_br):
+                print(self.jes)
+                print(self.jesr_extra_br)
                 self.jesUncertainty.setJetPt(j.pt)  # corrected(+smeared) pt
                 self.jesUncertainty.setJetEta(j.eta)
                 delta = self.jesUncertainty.getUncertainty(True)

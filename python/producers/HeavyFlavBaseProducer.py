@@ -745,11 +745,11 @@ class HeavyFlavBaseProducer(Module, object):
 
         self.out.fillBranch("nlep", len(event.looseLeptons))
         self.out.fillBranch("ht", event.ht)
-        if self.isMC and self._jmeSysts['jesr_extra_br']:
-            self.out.fillBranch("ht_jesUncFactorUp", event.ht_jesUncFactorUp)
-            self.out.fillBranch("ht_jesUncFactorDn", event.ht_jesUncFactorDn)
-            self.out.fillBranch("ht_jerSmearFactorUp", event.ht_jerSmearFactorUp)
-            self.out.fillBranch("ht_jerSmearFactorDn", event.ht_jerSmearFactorDn)
+        #if self.isMC and self._jmeSysts['jesr_extra_br']:
+        #    self.out.fillBranch("ht_jesUncFactorUp", event.ht_jesUncFactorUp)
+        #    self.out.fillBranch("ht_jesUncFactorDn", event.ht_jesUncFactorDn)
+        #    self.out.fillBranch("ht_jerSmearFactorUp", event.ht_jerSmearFactorUp)
+        #    self.out.fillBranch("ht_jerSmearFactorDn", event.ht_jerSmearFactorDn)
         self.out.fillBranch("met", event.met.pt)
         self.out.fillBranch("metphi", event.met.phi)
 
