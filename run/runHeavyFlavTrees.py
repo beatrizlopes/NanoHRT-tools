@@ -120,7 +120,7 @@ def _process(args):
     # MC for syst.
     if args.run_syst and not args.run_data:
 
-        # nominal w/ PDF/Scale wegihts
+        nominal w/ PDF/Scale wegihts
         logging.info('Start making nominal trees with PDF/scale weights...')
         syst_name = 'LHEWeight'
         opts = copy.deepcopy(args)
@@ -130,31 +130,31 @@ def _process(args):
         opts.branchsel_out = 'keep_and_drop_output_LHEweights.txt'
         run(opts, configs={hrt_cfgname: cfg})
 
-        # JES up/down
+        JES up/down
         for variation in ['up', 'down']:
-            syst_name = 'jes_%s' % variation
-            logging.info('Start making %s trees...' % syst_name)
-            opts = copy.deepcopy(args)
-            cfg = copy.deepcopy(default_config)
-            cfg['jes'] = variation
-            opts.outputdir = os.path.join(os.path.dirname(opts.outputdir), syst_name)
-            opts.jobdir = os.path.join(os.path.dirname(opts.jobdir), syst_name)
-            run(opts, configs={hrt_cfgname: cfg})
+           syst_name = 'jes_%s' % variation
+           logging.info('Start making %s trees...' % syst_name)
+           opts = copy.deepcopy(args)
+           cfg = copy.deepcopy(default_config)
+           cfg['jes'] = variation
+           opts.outputdir = os.path.join(os.path.dirname(opts.outputdir), syst_name)
+           opts.jobdir = os.path.join(os.path.dirname(opts.jobdir), syst_name)
+           run(opts, configs={hrt_cfgname: cfg})
 
-        # JER up/down
+        JER up/down
         for variation in ['up', 'down']:
-            syst_name = 'jer_%s' % variation
-            logging.info('Start making %s trees...' % syst_name)
-            opts = copy.deepcopy(args)
-            cfg = copy.deepcopy(default_config)
-            cfg['jer'] = variation
-            opts.outputdir = os.path.join(os.path.dirname(opts.outputdir), syst_name)
-            opts.jobdir = os.path.join(os.path.dirname(opts.jobdir), syst_name)
-            run(opts, configs={hrt_cfgname: cfg})
+           syst_name = 'jer_%s' % variation
+           logging.info('Start making %s trees...' % syst_name)
+           opts = copy.deepcopy(args)
+           cfg = copy.deepcopy(default_config)
+           cfg['jer'] = variation
+           opts.outputdir = os.path.join(os.path.dirname(opts.outputdir), syst_name)
+           opts.jobdir = os.path.join(os.path.dirname(opts.jobdir), syst_name)
+           run(opts, configs={hrt_cfgname: cfg})
 
         # MET unclustEn up/down
         if args.channel == 'muon':
-            for variation in ['up', 'down']:
+            for variation in ['up','down']: # 
                 syst_name = 'met_%s' % variation
                 logging.info('Start making %s trees...' % syst_name)
                 opts = copy.deepcopy(args)

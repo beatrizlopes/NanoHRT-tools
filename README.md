@@ -108,10 +108,10 @@ python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_
 ### RUN 2 #######
 #################
 python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 -n 10 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst 
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2018 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0  --po jec True
 
 python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all"' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst
-python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
+python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2017 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0  --po jec True
 
 python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0 --po jec True --po jes '"nominal"' --run-syst
 python runHeavyFlavTrees.py -i /eos/cms/store/cmst3/group/vhcc/NanoAOD/dev_AK15_ParTv2/_YEAR_ -o /eos/user/b/bribeiro/HadronicVH/20250321_ULNanoV9_MassRegression --jet-type ak15 --channel muon --year 2016 --run-data   -n 1 --condor-extras '+AccountingGroup = "group_u_CMST3.all" ' --sfbdt 0
@@ -153,6 +153,9 @@ Command line options:
   - **[NEW]** use `--sfbdt` to change the sfBDT cut value. This affects only QCD and photon samples. By default, sfBDT > 0.5 is applied to QCD and photon samples.
   - **[NEW]** use `--condor-extras` to pass extra options to condor job description file.
      
+condor_submit jobs_20250321_ULNanoV9_MassRegression_ak15_muon_2018/jes_down/submit.cmd
+condor_submit jobs_20250321_ULNanoV9_MassRegression_ak15_muon_2018/jes_up/submit.cmd
+
 More options of `runPostProcessing.py` or `runHRTTrees.py` (a wrapper of `runPostProcessing.py`) can be found with `python runPostProcessing.py -h` or `python runHRTTrees.py -h`, e.g.,
 
  - To resubmit failed jobs, run the same command but add `--resubmit`.

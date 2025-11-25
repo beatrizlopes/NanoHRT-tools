@@ -538,7 +538,10 @@ def run_add_weight(args):
             try:   
                 #logging.debug(xsec_dict)
                 #logging.debug(samp)
-                xsec = xsec_dict[samp.replace('PSWeights_', '')]
+                try:
+                    xsec = xsec_dict[samp.replace('PSWeights_', '')]
+                except:
+                    xsec = xsec_dict[samp.replace('PSweights_', '')]
                 if xsec is not None:
                     logging.info('Adding xsec weight to file %s, xsec=%f' % (outfile, xsec))
                     add_weight_branch(outfile, xsec)

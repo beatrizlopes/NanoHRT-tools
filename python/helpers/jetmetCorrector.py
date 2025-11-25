@@ -343,8 +343,6 @@ class JetMETCorrector(object):
             # set JES uncertainty ( = varied-Pt / Pt)
             j._jesUncFactor = 1
             if isMC and (self.jes in ['up', 'down'] or self.jesr_extra_br):
-                print(self.jes)
-                print(self.jesr_extra_br)
                 self.jesUncertainty.setJetPt(j.pt)  # corrected(+smeared) pt
                 self.jesUncertainty.setJetEta(j.eta)
                 delta = self.jesUncertainty.getUncertainty(True)
